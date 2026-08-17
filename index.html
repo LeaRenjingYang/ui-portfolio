@@ -1,0 +1,1210 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UI Design Portfolio · Game</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Space+Grotesk:wght@300;400;500;700&family=Space+Mono:wght@400;700&family=DM+Serif+Display:ital@0;1&family=Bebas+Neue&display=swap" rel="stylesheet">
+<style>
+/* RESET & GLOBALS */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --shell-bg: #080810;
+  --gold: #c8a86e;
+  --white: #f0ede8;
+}
+html { scroll-behavior: smooth; font-size: 16px; }
+body { background: var(--shell-bg); color: var(--white); overflow-x: hidden; }
+img { display: block; max-width: 100%; }
+::-webkit-scrollbar { width: 3px; }
+::-webkit-scrollbar-track { background: #000; }
+::-webkit-scrollbar-thumb { background: #333; }
+
+/* NAV */
+#nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  padding: 0 48px; height: 56px;
+  display: flex; align-items: center; justify-content: space-between;
+  background: rgba(8,8,16,0.7); backdrop-filter: blur(24px);
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+.nav-logo {
+  font-family: 'Space Mono', monospace;
+  font-size: 11px; letter-spacing: 0.22em; color: var(--gold);
+  text-transform: uppercase;
+}
+.nav-links { display: flex; gap: 4px; }
+.nav-links a {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
+  color: rgba(240,237,232,0.35); padding: 5px 10px;
+  border-radius: 3px; transition: color 0.3s;
+}
+.nav-links a:hover { color: var(--white); }
+
+/* HERO */
+#hero {
+  min-height: 100vh;
+  display: grid; place-items: center; text-align: center;
+  padding: 100px 40px 60px;
+  position: relative; overflow: hidden;
+}
+.hero-noise {
+  position: absolute; inset: 0; z-index: 0; pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  background-size: 256px;
+}
+.hero-orb {
+  position: absolute; border-radius: 50%; filter: blur(120px);
+  pointer-events: none; z-index: 0;
+}
+.hero-orb-1 { width: 600px; height: 600px; background: rgba(107,63,160,0.15); top: -100px; left: 50%; transform: translateX(-50%); }
+.hero-orb-2 { width: 400px; height: 400px; background: rgba(14,165,233,0.08); bottom: 0; right: -100px; }
+.hero-inner { position: relative; z-index: 1; max-width: 900px; }
+.hero-label {
+  font-family: 'Space Mono', monospace;
+  font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 32px;
+  display: inline-flex; align-items: center; gap: 12px;
+}
+.hero-label::before, .hero-label::after {
+  content: ''; display: block; width: 40px; height: 1px; background: var(--gold); opacity: 0.4;
+}
+.hero-name {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(64px, 10vw, 140px);
+  font-weight: 900; line-height: 0.92; letter-spacing: -0.02em;
+  color: var(--white); margin-bottom: 8px;
+}
+.hero-name em { font-style: italic; color: var(--gold); }
+.hero-role {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(16px, 2vw, 22px); font-weight: 300;
+  color: rgba(240,237,232,0.45); letter-spacing: 0.1em;
+  margin-bottom: 64px;
+}
+.hero-meta {
+  display: flex; gap: 64px; justify-content: center;
+  border-top: 1px solid rgba(255,255,255,0.08); padding-top: 40px;
+}
+.hero-meta-item { text-align: left; }
+.hero-meta-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 40px; font-weight: 700;
+  color: var(--white); letter-spacing: -0.03em;
+}
+.hero-meta-num sup { font-size: 18px; color: var(--gold); }
+.hero-meta-label {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 11px; letter-spacing: 0.1em; color: rgba(240,237,232,0.35);
+  text-transform: uppercase; margin-top: 2px;
+}
+
+/* COMMON PROJECT ELEMENTS */
+.p-info-bar {
+  display: flex; gap: 40px; flex-wrap: wrap;
+  padding: 24px 0; margin-bottom: 48px;
+  border-top: 1px solid rgba(255,255,255,0.06);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.p-info-item { min-width: 120px; }
+.p-info-label {
+  font-family: 'Space Mono', monospace; font-size: 10px;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  color: rgba(240,237,232,0.4); margin-bottom: 8px;
+}
+.p-info-value {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 16px; font-weight: 500; color: rgba(240,237,232,0.85);
+}
+.p-palette { display: flex; gap: 10px; align-items: center; }
+.p-pal-dot {
+  width: 32px; height: 32px; border-radius: 50%;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.1);
+}
+
+.screen-img {
+  border-radius: 24px; overflow: hidden;
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,0.06),
+    0 40px 80px rgba(0,0,0,0.7);
+  background: #000;
+  cursor: zoom-in;
+  transition: transform 0.6s ease, box-shadow 0.6s ease;
+}
+.screen-img:hover {
+  transform: translateY(-6px);
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,0.1),
+    0 50px 100px rgba(0,0,0,0.8);
+}
+.screen-img img { width: 100%; height: 100%; object-fit: contain; display: block; }
+
+/* P1: GOLD MERGE MANIA - 剧院式 */
+#p-gold {
+  background: #0d0618;
+  position: relative; overflow: hidden; padding: 140px 0 120px;
+}
+#p-gold::before {
+  content: ''; position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 50% -10%, rgba(107,63,160,0.35) 0%, transparent 60%),
+    radial-gradient(ellipse 40% 40% at 80% 80%, rgba(200,168,110,0.08) 0%, transparent 50%);
+}
+.gold-bg-text {
+  position: absolute; bottom: -40px; left: -20px;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(160px, 25vw, 340px); line-height: 1;
+  color: rgba(107,63,160,0.08); pointer-events: none; white-space: nowrap;
+  letter-spacing: -0.02em; user-select: none;
+}
+.gold-inner { max-width: 1400px; margin: 0 auto; padding: 0 80px; position: relative; z-index: 1; }
+.gold-header { margin-bottom: 48px; }
+.gold-proj-num {
+  font-family: 'Space Mono', monospace; font-size: 11px;
+  color: rgba(200,168,110,0.5); letter-spacing: 0.2em; margin-bottom: 20px;
+}
+.gold-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(56px, 8vw, 110px); font-weight: 900;
+  line-height: 0.95; letter-spacing: -0.02em;
+  color: #fff; margin-bottom: 16px;
+}
+.gold-title span {
+  display: block; font-style: italic;
+  background: linear-gradient(120deg, #c8a86e, #f0d090, #c8a86e);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.gold-tagline {
+  max-width: 520px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 17px; font-weight: 300; line-height: 1.8;
+  color: rgba(240,237,232,0.5);
+}
+.gold-screens {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr;
+  grid-template-rows: auto auto;
+  gap: 24px; align-items: start;
+}
+.gold-screen-hero {
+  grid-row: 1 / 3;
+  transform: perspective(1200px) rotateY(-8deg) rotateX(2deg);
+  transition: transform 0.6s ease;
+}
+.gold-screen-hero:hover { transform: perspective(1200px) rotateY(-3deg) rotateX(1deg) translateY(-8px); }
+.gold-screen-sm {
+  transform: perspective(1200px) rotateY(6deg) rotateX(-1deg);
+  transition: transform 0.6s ease;
+}
+.gold-screen-sm:hover { transform: perspective(1200px) rotateY(2deg) rotateX(0deg) translateY(-6px); }
+.gold-screen-hero .screen-img { height: 600px; }
+.gold-screen-sm .screen-img { height: 285px; }
+
+/* P2: 离谱找茬王 - 红色冲击 */
+#p-lp {
+  background: #0c0b04;
+  position: relative; overflow: hidden; padding: 140px 0 120px;
+}
+#p-lp::before {
+  content: ''; position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 60% 50% at 30% 50%, rgba(244,56,60,0.1) 0%, transparent 60%),
+    radial-gradient(ellipse 40% 60% at 90% 20%, rgba(245,164,82,0.08) 0%, transparent 50%);
+}
+.lp-bg-char {
+  position: absolute; right: -40px; top: 50%; transform: translateY(-50%);
+  font-family: 'Noto Serif SC', 'Noto Sans SC', 'PingFang SC', serif;
+  font-size: clamp(280px, 35vw, 480px); line-height: 1; font-weight: 900;
+  color: rgba(244,56,60,0.04); pointer-events: none; user-select: none;
+  letter-spacing: -0.05em;
+}
+.lp-inner { max-width: 1400px; margin: 0 auto; padding: 0 80px; position: relative; z-index: 1; }
+.lp-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+.lp-proj-num {
+  font-family: 'Space Mono', monospace; font-size: 11px;
+  color: rgba(244,56,60,0.5); letter-spacing: 0.2em; margin-bottom: 20px;
+}
+.lp-title {
+  font-size: clamp(52px, 7vw, 96px); font-weight: 900; line-height: 1.0;
+  color: #fff; letter-spacing: -0.02em; margin-bottom: 20px;
+  font-family: 'PingFang SC', 'Noto Sans SC', sans-serif;
+}
+.lp-title-accent { color: #f4383c; }
+.lp-sub {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 13px; letter-spacing: 0.15em; text-transform: uppercase;
+  color: rgba(245,164,82,0.6); margin-bottom: 24px;
+}
+.lp-desc {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 16px; line-height: 1.9; color: rgba(240,237,232,0.5);
+  max-width: 420px;
+}
+.lp-right {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+}
+.lp-screen { border-radius: 20px; overflow: hidden; }
+.lp-screen .screen-img {
+  box-shadow: 0 30px 60px rgba(0,0,0,0.8), 0 0 40px -10px rgba(244,56,60,0.2);
+  height: 440px;
+}
+.lp-screen-hero { grid-column: 1 / -1; }
+.lp-screen-hero .screen-img { height: 320px; }
+
+/* P3: TILE MATCH FUN - 夜深沉浸 */
+#p-tile {
+  background: #0e0d0e;
+  position: relative; overflow: hidden; padding: 140px 0 120px;
+}
+#p-tile::before {
+  content: ''; position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 50% 60% at 20% 60%, rgba(247,204,75,0.07) 0%, transparent 55%),
+    radial-gradient(ellipse 40% 40% at 80% 30%, rgba(241,112,149,0.07) 0%, transparent 50%);
+}
+.tile-inner { max-width: 1400px; margin: 0 auto; padding: 0 80px; position: relative; z-index: 1; }
+.tile-header {
+  display: flex; align-items: flex-end; justify-content: space-between;
+  margin-bottom: 64px; gap: 40px;
+}
+.tile-proj-num {
+  font-family: 'Space Mono', monospace; font-size: 11px;
+  color: rgba(247,204,75,0.4); letter-spacing: 0.2em; margin-bottom: 16px;
+}
+.tile-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(72px, 10vw, 130px); line-height: 0.9;
+  letter-spacing: 0.02em; color: #fff;
+}
+.tile-title span { color: #f7cc4b; }
+.tile-desc-col { max-width: 340px; text-align: right; }
+.tile-genre {
+  font-family: 'Space Mono', monospace; font-size: 11px;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  color: rgba(241,112,149,0.6); margin-bottom: 12px;
+}
+.tile-desc {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 15px; line-height: 1.8; color: rgba(240,237,232,0.4);
+}
+.tile-screens {
+  display: flex; gap: 16px; overflow-x: auto; padding-bottom: 20px;
+}
+.tile-screens .screen-img { flex: 0 0 260px; height: 520px; }
+
+/* P4: ARROW CLUB - 赛博终端 */
+#p-club {
+  background: #0a0e18;
+  position: relative; overflow: hidden; padding: 140px 0 120px;
+}
+#p-club::before {
+  content: ''; position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 60% 50% at 50% 0%, rgba(14,165,233,0.12) 0%, transparent 60%),
+    radial-gradient(ellipse 30% 40% at 10% 70%, rgba(125,214,83,0.06) 0%, transparent 50%);
+}
+.club-scan {
+  position: absolute; inset: 0; pointer-events: none; z-index: 0; opacity: 0.03;
+  background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(14,165,233,0.5) 2px, rgba(14,165,233,0.5) 3px);
+}
+.club-inner { max-width: 1400px; margin: 0 auto; padding: 0 80px; position: relative; z-index: 1; }
+.club-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 64px; }
+.club-proj-num {
+  font-family: 'Space Mono', monospace; font-size: 10px;
+  color: rgba(14,165,233,0.5); letter-spacing: 0.25em; margin-bottom: 16px;
+}
+.club-title {
+  font-family: 'Space Mono', monospace;
+  font-size: clamp(48px, 6.5vw, 88px); font-weight: 700;
+  line-height: 1.05; letter-spacing: -0.02em;
+  color: #fff;
+}
+.club-title-glow {
+  display: block;
+  color: #0ea5e9;
+  text-shadow: 0 0 40px rgba(14,165,233,0.6), 0 0 80px rgba(14,165,233,0.2);
+}
+.club-right-col { max-width: 300px; padding-top: 48px; }
+.club-status {
+  font-family: 'Space Mono', monospace; font-size: 11px;
+  color: rgba(14,165,233,0.5); letter-spacing: 0.15em; margin-bottom: 16px;
+}
+.club-status span { color: #7dd653; }
+.club-desc {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 15px; line-height: 1.9; color: rgba(240,237,232,0.4);
+}
+.club-screens {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+}
+.club-screen .screen-img {
+  box-shadow: 0 30px 60px rgba(0,0,0,0.8), 0 0 40px -10px rgba(14,165,233,0.2);
+  height: 480px;
+}
+
+/* P5: MAHJONG PARIS - 古典画廊 */
+#p-mahjong {
+  background: #0f0f0d;
+  position: relative; overflow: hidden; padding: 140px 0 120px;
+}
+#p-mahjong::before {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(ellipse 80% 60% at 50% 50%, rgba(39,39,38,0.8) 0%, transparent 70%);
+}
+.mahjong-rule {
+  position: absolute; top: 0; bottom: 0; left: 50%; width: 1px;
+  background: linear-gradient(to bottom, transparent, rgba(239,208,154,0.1) 20%, rgba(239,208,154,0.1) 80%, transparent);
+}
+.mahjong-inner { max-width: 1400px; margin: 0 auto; padding: 0 80px; position: relative; z-index: 1; }
+.mahjong-header { text-align: center; margin-bottom: 64px; }
+.mahjong-rule-text {
+  font-family: 'Space Mono', monospace; font-size: 10px;
+  letter-spacing: 0.3em; text-transform: uppercase;
+  color: rgba(239,208,154,0.35); margin-bottom: 24px;
+}
+.mahjong-title {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(52px, 8vw, 108px); line-height: 1.0;
+  color: var(--white); letter-spacing: -0.01em; margin-bottom: 16px;
+}
+.mahjong-title em { font-style: italic; color: #efd09a; }
+.mahjong-subtitle {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 14px; font-weight: 300; letter-spacing: 0.2em;
+  color: rgba(239,208,154,0.35); text-transform: uppercase;
+}
+.mahjong-gallery {
+  display: flex; gap: 16px; overflow-x: auto; padding-bottom: 20px;
+}
+.mahjong-cell { overflow: hidden; position: relative; flex-shrink: 0; }
+.mahjong-cell .screen-img { width: 260px; height: 520px; border-radius: 20px; }
+
+/* P6: RICH ARROW - 霓虹赌场 */
+#p-rich {
+  background: #050c1a;
+  position: relative; overflow: hidden; padding: 140px 0 120px;
+}
+#p-rich::before {
+  content: ''; position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 50% 60% at 15% 50%, rgba(43,119,224,0.12) 0%, transparent 55%),
+    radial-gradient(ellipse 40% 40% at 85% 40%, rgba(184,231,53,0.08) 0%, transparent 50%);
+}
+.rich-inner { max-width: 1400px; margin: 0 auto; padding: 0 80px; position: relative; z-index: 1; }
+.rich-layout { display: grid; grid-template-columns: 1fr 1.4fr; gap: 80px; align-items: start; }
+.rich-proj-num {
+  font-family: 'Space Mono', monospace; font-size: 11px;
+  color: rgba(43,119,224,0.5); letter-spacing: 0.2em; margin-bottom: 20px;
+}
+.rich-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(64px, 9vw, 120px); line-height: 0.9; color: #fff;
+  letter-spacing: 0.03em; margin-bottom: 8px;
+}
+.rich-title span {
+  display: block; color: #b8e735;
+  text-shadow: 0 0 40px rgba(184,231,53,0.5), 0 0 80px rgba(184,231,53,0.2);
+}
+.rich-desc {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 16px; line-height: 1.8; color: rgba(240,237,232,0.4);
+  margin: 28px 0 40px;
+}
+.rich-screens-col {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: 180px; gap: 16px;
+}
+.rich-screen .screen-img {
+  box-shadow: 0 30px 60px rgba(0,0,0,0.8), 0 0 40px -10px rgba(43,119,224,0.2);
+  height: 100%;
+}
+.rich-screen-1 { grid-row: span 3; }
+.rich-screen-2 { grid-row: span 2; }
+.rich-screen-3 { grid-row: span 2; }
+.rich-screen-4 { grid-row: span 2; }
+.rich-screen-5 { grid-row: span 3; }
+
+/* P7: TRIPLE MATCH - 温暖杂志 */
+#p-triple {
+  background: #100d07;
+  position: relative; overflow: hidden; padding: 140px 0 120px;
+}
+#p-triple::before {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(ellipse 70% 50% at 50% 30%, rgba(249,230,191,0.05) 0%, transparent 60%);
+}
+.triple-inner { max-width: 1400px; margin: 0 auto; padding: 0 80px; position: relative; z-index: 1; }
+.triple-eyebrow {
+  font-family: 'Space Mono', monospace; font-size: 10px;
+  letter-spacing: 0.3em; text-transform: uppercase;
+  color: rgba(41,105,192,0.5); margin-bottom: 20px;
+}
+.triple-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(52px, 7vw, 96px); font-weight: 900;
+  color: #f9e6bf; line-height: 1.0; letter-spacing: -0.02em;
+  margin-bottom: 20px;
+}
+.triple-title em { font-style: italic; color: rgba(249,230,191,0.5); }
+.triple-desc {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 16px; line-height: 1.8; color: rgba(240,237,232,0.4);
+  max-width: 520px; margin-bottom: 48px;
+}
+.triple-grid {
+  display: flex; gap: 16px; overflow-x: auto; padding-bottom: 20px;
+}
+.triple-card .screen-img { flex: 0 0 280px; height: 560px; }
+
+/* P8: TRICKY TALES - 橙光故事 */
+#p-tricky {
+  background: #0d0a08;
+  position: relative; overflow: hidden; padding: 140px 0 120px;
+}
+#p-tricky::before {
+  content: ''; position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 50% 50% at 40% 30%, rgba(252,121,19,0.09) 0%, transparent 55%),
+    radial-gradient(ellipse 40% 40% at 80% 70%, rgba(127,109,189,0.07) 0%, transparent 50%);
+}
+.tricky-inner { max-width: 1400px; margin: 0 auto; padding: 0 80px; position: relative; z-index: 1; }
+.tricky-layout { display: grid; grid-template-columns: 1.2fr 1fr; gap: 100px; align-items: center; }
+.tricky-screens { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; position: relative; }
+.tricky-screen .screen-img {
+  box-shadow: 0 40px 80px rgba(0,0,0,0.8), 0 0 60px -15px rgba(252,121,19,0.3);
+  height: 420px;
+}
+.tricky-screen-1 { transform: rotate(-2deg); }
+.tricky-screen-2 { transform: rotate(1.5deg); margin-top: 40px; }
+.tricky-screen-3 { transform: rotate(-1deg); margin-top: -20px; }
+.tricky-screen-4 { transform: rotate(2deg); margin-top: 20px; }
+.tricky-proj-num {
+  font-family: 'Space Mono', monospace; font-size: 11px;
+  color: rgba(252,121,19,0.5); letter-spacing: 0.2em; margin-bottom: 20px;
+}
+.tricky-title {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(48px, 6.5vw, 88px); line-height: 1.0;
+  color: #fff; margin-bottom: 8px;
+}
+.tricky-title em { font-style: italic; color: #fc7913; }
+.tricky-desc {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 16px; line-height: 1.9; color: rgba(240,237,232,0.4);
+  margin: 24px 0 36px;
+}
+
+/* P9: ARROW PUZZLE MASTER - 糖果3D */
+#p-apm {
+  background: #0f0c02;
+  position: relative; overflow: hidden; padding: 140px 0 120px;
+}
+#p-apm::before {
+  content: ''; position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 60% 50% at 50% 0%, rgba(246,202,80,0.1) 0%, transparent 55%),
+    radial-gradient(ellipse 30% 40% at 20% 80%, rgba(107,140,174,0.07) 0%, transparent 50%);
+}
+.apm-inner { max-width: 1400px; margin: 0 auto; padding: 0 80px; position: relative; z-index: 1; }
+.apm-header { margin-bottom: 64px; }
+.apm-proj-num {
+  font-family: 'Space Mono', monospace; font-size: 11px;
+  color: rgba(246,202,80,0.4); letter-spacing: 0.2em; margin-bottom: 16px;
+}
+.apm-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(60px, 8.5vw, 116px); line-height: 0.92;
+  color: #fff; letter-spacing: 0.02em; margin-bottom: 12px;
+}
+.apm-title span { color: #f6ca50; }
+.apm-subtitle {
+  font-family: 'Space Grotesk', sans-serif; font-weight: 300;
+  font-size: 15px; letter-spacing: 0.15em; text-transform: uppercase;
+  color: rgba(107,140,174,0.5);
+}
+.apm-desc {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 16px; line-height: 1.8; color: rgba(240,237,232,0.4);
+  max-width: 500px; margin: 20px 0 48px;
+}
+.apm-screens { display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; align-items: end; }
+.apm-screen .screen-img { height: 480px; }
+.apm-screen:nth-child(1) { transform: translateY(40px); }
+.apm-screen:nth-child(2) { transform: translateY(0px); }
+.apm-screen:nth-child(3) { transform: translateY(-30px); }
+.apm-screen:nth-child(4) { transform: translateY(0px); }
+.apm-screen:nth-child(5) { transform: translateY(40px); }
+
+/* P10: ARROW CASH RUSH - 日光活力 */
+#p-acr {
+  background: #08080e;
+  position: relative; overflow: hidden; padding: 140px 0 160px;
+}
+#p-acr::before {
+  content: ''; position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 60% 50% at 60% 40%, rgba(74,149,217,0.09) 0%, transparent 55%),
+    radial-gradient(ellipse 40% 40% at 20% 70%, rgba(255,213,79,0.07) 0%, transparent 50%);
+}
+.acr-inner { max-width: 1400px; margin: 0 auto; padding: 0 80px; position: relative; z-index: 1; }
+.acr-layout { display: grid; grid-template-columns: 1.4fr 1fr; gap: 80px; align-items: center; }
+.acr-screens-col { position: relative; }
+.acr-screen-row { display: flex; gap: 16px; align-items: flex-end; }
+.acr-screen-row:nth-child(2) { margin-top: 16px; margin-left: 40px; }
+.acr-screen .screen-img {
+  flex-shrink: 0; width: 180px; height: 360px;
+  box-shadow: 0 30px 60px rgba(0,0,0,0.8), 0 0 40px -10px rgba(74,149,217,0.2);
+}
+.acr-proj-num {
+  font-family: 'Space Mono', monospace; font-size: 11px;
+  color: rgba(74,149,217,0.5); letter-spacing: 0.2em; margin-bottom: 20px;
+}
+.acr-title {
+  font-family: 'Playfair Display', serif; font-weight: 900;
+  font-size: clamp(48px, 6.5vw, 88px); line-height: 1.0;
+  color: #fff; letter-spacing: -0.02em; margin-bottom: 8px;
+}
+.acr-title em { font-style: italic; color: #4a95d9; }
+.acr-desc {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 16px; line-height: 1.9; color: rgba(240,237,232,0.4);
+  margin: 24px 0;
+}
+
+/* FOOTER */
+#footer {
+  padding: 120px 80px; text-align: center; position: relative;
+  border-top: 1px solid rgba(255,255,255,0.05);
+}
+.footer-title {
+  font-family: 'Playfair Display', serif; font-style: italic;
+  font-size: clamp(40px, 6vw, 80px); color: rgba(240,237,232,0.08);
+  margin-bottom: 32px; letter-spacing: -0.02em;
+}
+.footer-cta {
+  font-family: 'Space Mono', monospace; font-size: 10px;
+  letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold);
+}
+
+/* LIGHTBOX */
+#lightbox {
+  position: fixed; inset: 0; z-index: 9999;
+  background: rgba(0,0,0,0.95);
+  display: none; align-items: center; justify-content: center; cursor: zoom-out;
+}
+#lightbox.open { display: flex; }
+#lightbox img { max-width: 88vw; max-height: 88vh; border-radius: 12px; object-fit: contain; }
+
+/* RESPONSIVE */
+@media (max-width: 1100px) {
+  .gold-inner, .lp-inner, .tile-inner, .club-inner, .mahjong-inner,
+  .rich-inner, .triple-inner, .tricky-inner, .apm-inner, .acr-inner { padding: 0 40px; }
+  .lp-layout, .rich-layout, .tricky-layout, .acr-layout { grid-template-columns: 1fr; gap: 60px; }
+  .club-screens { grid-template-columns: 1fr; }
+  .rich-screens-col { grid-template-columns: 1fr 1fr; }
+  .apm-screens { grid-template-columns: repeat(3, 1fr); }
+}
+@media (max-width: 700px) {
+  #nav { padding: 0 20px; }
+  .nav-links { display: none; }
+  .gold-screens { grid-template-columns: 1fr; }
+  .gold-screen-hero { grid-row: auto; }
+  .lp-right { grid-template-columns: 1fr; }
+  .club-screens { grid-template-columns: 1fr; }
+  .rich-screens-col { grid-template-columns: 1fr; }
+  .apm-screens { grid-template-columns: 1fr 1fr; }
+  .acr-screen-row { flex-wrap: wrap; }
+}
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <div class="nav-logo">UI · Portfolio</div>
+  <div class="nav-links">
+    <a href="#p-gold">01</a><a href="#p-lp">02</a><a href="#p-tile">03</a><a href="#p-club">04</a><a href="#p-mahjong">05</a>
+    <a href="#p-rich">06</a><a href="#p-triple">07</a><a href="#p-tricky">08</a><a href="#p-apm">09</a><a href="#p-acr">10</a>
+  </div>
+</nav>
+
+<section id="hero">
+  <div class="hero-noise"></div>
+  <div class="hero-orb hero-orb-1"></div>
+  <div class="hero-orb hero-orb-2"></div>
+  <div class="hero-inner">
+    <div class="hero-label">Game UI Designer</div>
+    <h1 class="hero-name">Game UI<br><em>Portfolio</em></h1>
+    <p class="hero-role">Mobile · Monetization · Multi-market</p>
+    <div class="hero-meta">
+      <div class="hero-meta-item">
+        <div class="hero-meta-num">10<sup>+</sup></div>
+        <div class="hero-meta-label">Projects</div>
+      </div>
+      <div class="hero-meta-item">
+        <div class="hero-meta-num">200<sup>+</sup></div>
+        <div class="hero-meta-label">Screens</div>
+      </div>
+      <div class="hero-meta-item">
+        <div class="hero-meta-num">4<sup>+</sup></div>
+        <div class="hero-meta-label">Markets</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- P1: GOLD MERGE MANIA -->
+<section id="p-gold">
+  <div class="gold-bg-text">GOLD</div>
+  <div class="gold-inner">
+    <div class="gold-header">
+      <div class="gold-proj-num">01 / 10 · MERGE · CASUAL</div>
+      <h2 class="gold-title">Gold Merge<br><span>Mania</span></h2>
+      <p class="gold-tagline">双货币体系（Rp + $）配多渠道变现，实物黄金奖品物流 UI 完整覆盖。</p>
+    </div>
+    <div class="p-info-bar">
+      <div class="p-info-item">
+        <div class="p-info-label">总页面</div>
+        <div class="p-info-value">60+ 屏幕</div>
+      </div>
+      <div class="p-info-item">
+        <div class="p-info-label">市场</div>
+        <div class="p-info-value">全球</div>
+      </div>
+      <div class="p-info-item">
+        <div class="p-info-label">类型</div>
+        <div class="p-info-value">游戏 + 网赚</div>
+      </div>
+      <div class="p-info-item">
+        <div class="p-info-label">配色</div>
+        <div class="p-palette">
+          <div class="p-pal-dot" style="background:#6B3FA0"></div>
+          <div class="p-pal-dot" style="background:#FFD700"></div>
+          <div class="p-pal-dot" style="background:#E85AA0"></div>
+          <div class="p-pal-dot" style="background:#00D4D4"></div>
+        </div>
+      </div>
+    </div>
+    <div class="gold-screens">
+      <div class="gold-screen-hero" onclick="lb(this)">
+        <div class="screen-img"><img src="assets/gold-merge-mania/page_mainscreen2.webp" alt=""></div>
+      </div>
+      <div class="gold-screen-sm" onclick="lb(this)">
+        <div class="screen-img"><img src="assets/gold-merge-mania/Game Play Screen.webp" alt=""></div>
+      </div>
+      <div class="gold-screen-sm" onclick="lb(this)">
+        <div class="screen-img"><img src="assets/gold-merge-mania/Lucky Gift 1.webp" alt=""></div>
+      </div>
+      <div class="gold-screen-sm" onclick="lb(this)">
+        <div class="screen-img"><img src="assets/gold-merge-mania/Confirm Payout.webp" alt=""></div>
+      </div>
+      <div class="gold-screen-sm" onclick="lb(this)">
+        <div class="screen-img"><img src="assets/gold-merge-mania/Daily Gift.webp" alt=""></div>
+      </div>
+      <div class="gold-screen-sm" onclick="lb(this)">
+        <div class="screen-img"><img src="assets/gold-merge-mania/Withdraw History.webp" alt=""></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- P2: 离谱找茬王 -->
+<section id="p-lp">
+  <div class="lp-bg-char">茬</div>
+  <div class="lp-inner">
+    <div class="lp-layout">
+      <div class="lp-left">
+        <div class="lp-proj-num">02 / 10 · 找茬 · 休闲</div>
+        <h2 class="lp-title">离谱<br><span class="lp-title-accent">找茬王</span></h2>
+        <div class="lp-sub">Spot-the-Difference · CN Market</div>
+        <p class="lp-desc">国内市场找茬休闲游戏。红包变现体系 + 超级福利 + 人工智能审核，完整覆盖国内变现场景的 UI 设计语言。</p>
+        <div class="p-info-bar">
+          <div class="p-info-item">
+            <div class="p-info-label">总页面</div>
+            <div class="p-info-value">20+ 屏幕</div>
+          </div>
+          <div class="p-info-item">
+            <div class="p-info-label">市场</div>
+            <div class="p-info-value">中国大陆</div>
+          </div>
+          <div class="p-info-item">
+            <div class="p-info-label">类型</div>
+            <div class="p-info-value">游戏 + 网赚</div>
+          </div>
+          <div class="p-info-item">
+            <div class="p-info-label">配色</div>
+            <div class="p-palette">
+              <div class="p-pal-dot" style="background:#29290d"></div>
+              <div class="p-pal-dot" style="background:#f4383c"></div>
+              <div class="p-pal-dot" style="background:#f5a452"></div>
+              <div class="p-pal-dot" style="background:#4a32c6"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="lp-right">
+        <div class="lp-screen lp-screen-hero" onclick="lb(this)">
+          <div class="screen-img"><img src="assets/离谱找茬王-部分图/main.webp" alt=""></div>
+        </div>
+        <div class="lp-screen" onclick="lb(this)">
+          <div class="screen-img"><img src="assets/离谱找茬王-部分图/page_chaojifuli.webp" alt=""></div>
+        </div>
+        <div class="lp-screen" onclick="lb(this)">
+          <div class="screen-img"><img src="assets/离谱找茬王-部分图/page_hongbaosuixinti.webp" alt=""></div>
+        </div>
+        <div class="lp-screen" onclick="lb(this)">
+          <div class="screen-img"><img src="assets/离谱找茬王-部分图/page_teshufuli.webp" alt=""></div>
+        </div>
+        <div class="lp-screen" onclick="lb(this)">
+          <div class="screen-img"><img src="assets/离谱找茬王-部分图/page_tixian.webp" alt=""></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- P3: TILE MATCH FUN -->
+<section id="p-tile">
+  <div class="tile-inner">
+    <div class="tile-header">
+      <div>
+        <div class="tile-proj-num">03 / 10 · TILE MATCH · CASUAL</div>
+        <h2 class="tile-title">Tile<br><span>Match</span><br>Fun</h2>
+      </div>
+      <div class="tile-desc-col">
+        <div class="tile-genre">Deep Dark · Warm Neon</div>
+        <p class="tile-desc">近黑背景砖块消除。暖黄 × 粉橙霓虹营造沉浸感，激励弹窗层次清晰。</p>
+      </div>
+    </div>
+    <div class="p-info-bar">
+      <div class="p-info-item">
+        <div class="p-info-label">总页面</div>
+        <div class="p-info-value">20+ 屏幕</div>
+      </div>
+      <div class="p-info-item">
+        <div class="p-info-label">市场</div>
+        <div class="p-info-value">全球</div>
+      </div>
+      <div class="p-info-item">
+        <div class="p-info-label">类型</div>
+        <div class="p-info-value">游戏 + 网赚</div>
+      </div>
+      <div class="p-info-item">
+        <div class="p-info-label">配色</div>
+        <div class="p-palette">
+          <div class="p-pal-dot" style="background:#1d1d1e"></div>
+          <div class="p-pal-dot" style="background:#f7cc4b"></div>
+          <div class="p-pal-dot" style="background:#f17095"></div>
+          <div class="p-pal-dot" style="background:#f49474"></div>
+        </div>
+      </div>
+    </div>
+    <div class="tile-screens">
+      <div class="screen-img" onclick="lb(this)"><img src="assets/tile-match-fun/Main Screen.webp" alt=""></div>
+      <div class="screen-img" onclick="lb(this)"><img src="assets/tile-match-fun/Loading.webp" alt=""></div>
+      <div class="screen-img" onclick="lb(this)"><img src="assets/tile-match-fun/Congrats.webp" alt=""></div>
+      <div class="screen-img" onclick="lb(this)"><img src="assets/tile-match-fun/Limited rewards 1.webp" alt=""></div>
+      <div class="screen-img" onclick="lb(this)"><img src="assets/tile-match-fun/Withdraw.webp" alt=""></div>
+    </div>
+  </div>
+</section>
+
+<!-- P4: ARROW CLUB -->
+<section id="p-club">
+  <div class="club-scan"></div>
+  <div class="club-inner">
+    <div class="club-top">
+      <div>
+        <div class="club-proj-num">04 / 10 · ARROW PUZZLE · CASHOUT</div>
+        <h2 class="club-title">Arrow<br><span class="club-title-glow">Club</span></h2>
+      </div>
+      <div class="club-right-col">
+        <div class="club-status">STATUS <span>● ACTIVE</span></div>
+        <p class="club-desc">全系列唯一深色模式皮肤。霓虹青色贯穿全局，赛博夜店氛围，钻石提现体系完整。</p>
+      </div>
+    </div>
+    <div class="p-info-bar">
+      <div class="p-info-item">
+        <div class="p-info-label">总页面</div>
+        <div class="p-info-value">20+ 屏幕</div>
+      </div>
+      <div class="p-info-item">
+        <div class="p-info-label">市场</div>
+        <div class="p-info-value">全球</div>
+      </div>
+      <div class="p-info-item">
+        <div class="p-info-label">类型</div>
+        <div class="p-info-value">游戏 + 网赚</div>
+      </div>
+      <div class="p-info-item">
+        <div class="p-info-label">配色</div>
+        <div class="p-palette">
+          <div class="p-pal-dot" style="background:#2E3642"></div>
+          <div class="p-pal-dot" style="background:#0EA5E9"></div>
+          <div class="p-pal-dot" style="background:#7DD653"></div>
+        </div>
+      </div>
+    </div>
+    <div class="club-screens">
+      <div class="club-screen" onclick="lb(this)">
+        <div class="screen-img"><img src="assets/arrow-club/page_megareward.webp" alt=""></div>
+      </div>
+      <div class="club-screen" onclick="lb(this)">
+        <div class="screen-img"><img src="assets/arrow-club/page_mainscreen2.webp" alt=""></div>
+      </div>
+      <div class="club-screen" onclick="lb(this)">
+        <div class="screen-img"><img src="assets/arrow-club/page_cash.webp" alt=""></div>
+      </div>
+      <div class="club-screen" onclick="lb(this)">
+        <div class="screen-img"><img src="assets/arrow-club/page_congrats1.webp" alt=""></div>
+      </div>
+      <div class="club-screen" onclick="lb(this)">
+        <div class="screen-img"><img src="assets/arrow-club/page_settings.webp" alt=""></div>
+      </div>
+      <div class="club-screen" onclick="lb(this)">
+        <div class="screen-img"><img src="assets/arrow-club/page_diamondwithdraw1.webp" alt=""></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- P5: MAHJONG PARIS -->
+<section id="p-mahjong">
+  <div class="mahjong-rule"></div>
+  <div class="mahjong-inner">
+    <div class="mahjong-header">
+      <div class="mahjong-rule-text">05 / 10 · Mahjong Solitaire</div>
+      <h2 class="mahjong-title">Mahjong<br><em>Paris</em></h2>
+      <p class="mahjong-subtitle">East meets West · Charcoal & Champagne Gold</p>
+    </div>
+    <div class="p-info-bar">
+      <div class="p-info-item">
+        <div class="p-info-label">总页面</div>
+        <div class="p-info-value">20+ 屏幕</div>
+      </div>
+      <div class="p-info-item">
+        <div class="p-info-label">市场</div>
+        <div class="p-info-value">欧美</div>
+      </div>
+      <div class="p-info-item">
+        <div class="p-info-label">类型</div>
+        <div class="p-info-value">游戏 + 网赚</div>
+      </div>
+      <div class="p-info-item">
+        <div class="p-info-label">配色</div>
+        <div class="p-palette">
+          <div class="p-pal-dot" style="background:#272726"></div>
+          <div class="p-pal-dot" style="background:#efd09a"></div>
+          <div class="p-pal-dot" style="background:#18502a"></div>
+        </div>
+      </div>
+    </div>
+    <div class="mahjong-gallery">
+      <div class="mahjong-cell" onclick="lb(this)">
+        <div class="screen-img"><img src="assets/mahjong-paris/page_main.webp" alt=""></div>
+      </div>
+      <div class="mahjong-cell" onclick="lb(this)">
+        <div class="screen-img"><img src="assets/mahjong-paris/page_loading.webp" alt=""></div>
+      </div>
+      <div class="mahjong-cell" onclick="lb(this)">
+        <div class="screen-img"><img src="assets/mahjong-paris/page_welcome.webp" alt=""></div>
+      </div>
+      <div class="mahjong-cell" onclick="lb(this)">
+        <div class="screen-img"><img src="assets/mahjong-paris/page_levelclreance.webp" alt=""></div>
+      </div>
+      <div class="mahjong-cell" onclick="lb(this)">
+        <div class="screen-img"><img src="assets/mahjong-paris/page_wd.webp" alt=""></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- P6: RICH ARROW -->
+<section id="p-rich">
+  <div class="rich-inner">
+    <div class="rich-layout">
+      <div>
+        <div class="rich-proj-num">06 / 10 · ARROW PUZZLE · CASHOUT</div>
+        <h2 class="rich-title">Rich<br><span>Arrow</span></h2>
+        <p class="rich-desc">深海霓虹主题。电光蓝辉光配荧光绿钞票元素，数字赌场氛围，现金感知极强。</p>
+        <div class="p-info-bar">
+          <div class="p-info-item">
+            <div class="p-info-label">总页面</div>
+            <div class="p-info-value">20+ 屏幕</div>
+          </div>
+          <div class="p-info-item">
+            <div class="p-info-label">市场</div>
+            <div class="p-info-value">全球</div>
+          </div>
+          <div class="p-info-item">
+            <div class="p-info-label">类型</div>
+            <div class="p-info-value">游戏 + 网赚</div>
+          </div>
+          <div class="p-info-item">
+            <div class="p-info-label">配色</div>
+            <div class="p-palette">
+              <div class="p-pal-dot" style="background:#0D1B2E"></div>
+              <div class="p-pal-dot" style="background:#2B77E0"></div>
+              <div class="p-pal-dot" style="background:#B8E735"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="rich-screens-col">
+        <div class="rich-screen rich-screen-1" onclick="lb(this)">
+          <div class="screen-img"><img src="assets/rich-arrow/page_loading.webp" alt=""></div>
+        </div>
+        <div class="rich-screen rich-screen-2" onclick="lb(this)">
+          <div class="screen-img"><img src="assets/rich-arrow/page_mainscreen.webp" alt=""></div>
+        </div>
+        <div class="rich-screen rich-screen-3" onclick="lb(this)">
+          <div class="screen-img"><img src="assets/rich-arrow/page_cashout.webp" alt=""></div>
+        </div>
+        <div class="rich-screen rich-screen-4" onclick="lb(this)">
+          <div class="screen-img"><img src="assets/rich-arrow/page_cashrewards.webp" alt=""></div>
+        </div>
+        <div class="rich-screen rich-screen-5" onclick="lb(this)">
+          <div class="screen-img"><img src="assets/rich-arrow/page_wdcongrats.webp" alt=""></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- P7: TRIPLE MATCH -->
+<section id="p-triple">
+  <div class="triple-inner">
+    <div class="triple-eyebrow">07 / 10 · MATCH-3 · CASUAL</div>
+    <h2 class="triple-title">Triple<br><em>Match</em></h2>
+    <p class="triple-desc">三消休闲游戏。奶油暖色系配宝蓝高光，温馨轻松氛围，宝蓝色 CTA 在暖色背景上形成清晰视觉层次。</p>
+    <div class="p-info-bar">
+      <div class="p-info-item">
+        <div class="p-info-label">总页面</div>
+        <div class="p-info-value">20+ 屏幕</div>
+      </div>
+      <div class="p-info-item">
+        <div class="p-info-label">市场</div>
+        <div class="p-info-value">全球</div>
+      </div>
+      <div class="p-info-item">
+        <div class="p-info-label">类型</div>
+        <div class="p-info-value">游戏 + 网赚</div>
+      </div>
+      <div class="p-info-item">
+        <div class="p-info-label">配色</div>
+        <div class="p-palette">
+          <div class="p-pal-dot" style="background:#f9e6bf"></div>
+          <div class="p-pal-dot" style="background:#2969c0"></div>
+          <div class="p-pal-dot" style="background:#913e4d"></div>
+        </div>
+      </div>
+    </div>
+    <div class="triple-grid">
+      <div class="triple-card" onclick="lb(this)">
+        <div class="screen-img"><img src="assets/triple-match/page_main.webp" alt=""></div>
+      </div>
+      <div class="triple-card" onclick="lb(this)">
+        <div class="screen-img"><img src="assets/triple-match/page_loading.webp" alt=""></div>
+      </div>
+      <div class="triple-card" onclick="lb(this)">
+        <div class="screen-img"><img src="assets/triple-match/page_luckyreward1.webp" alt=""></div>
+      </div>
+      <div class="triple-card" onclick="lb(this)">
+        <div class="screen-img"><img src="assets/triple-match/page_wd1.webp" alt=""></div>
+      </div>
+      <div class="triple-card" onclick="lb(this)">
+        <div class="screen-img"><img src="assets/triple-match/page_clear.webp" alt=""></div>
+      </div>
+      <div class="triple-card" onclick="lb(this)">
+        <div class="screen-img"><img src="assets/triple-match/page_settings2.webp" alt=""></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- P8: TRICKY TALES -->
+<section id="p-tricky">
+  <div class="tricky-inner">
+    <div class="tricky-layout">
+      <div class="tricky-screens">
+        <div class="tricky-screen tricky-screen-1" onclick="lb(this)">
+          <div class="screen-img"><img src="assets/tricky-tales/page_loading.webp" alt=""></div>
+        </div>
+        <div class="tricky-screen tricky-screen-2" onclick="lb(this)">
+          <div class="screen-img"><img src="assets/tricky-tales/page_main2.webp" alt=""></div>
+        </div>
+        <div class="tricky-screen tricky-screen-3" onclick="lb(this)">
+          <div class="screen-img"><img src="assets/tricky-tales/page_levelclreance.webp" alt=""></div>
+        </div>
+        <div class="tricky-screen tricky-screen-4" onclick="lb(this)">
+          <div class="screen-img"><img src="assets/tricky-tales/page_wd.webp" alt=""></div>
+        </div>
+      </div>
+      <div>
+        <div class="tricky-proj-num">08 / 10 · PUZZLE ADVENTURE</div>
+        <h2 class="tricky-title">Tricky<br><em>Tales</em></h2>
+        <p class="tricky-desc">温暖插画风解谜冒险。暖白底配橙色主光与薰衣草紫，童趣与精致并存。</p>
+        <div class="p-info-bar">
+          <div class="p-info-item">
+            <div class="p-info-label">总页面</div>
+            <div class="p-info-value">20+ 屏幕</div>
+          </div>
+          <div class="p-info-item">
+            <div class="p-info-label">市场</div>
+            <div class="p-info-value">全球</div>
+          </div>
+          <div class="p-info-item">
+            <div class="p-info-label">类型</div>
+            <div class="p-info-value">游戏 + 网赚</div>
+          </div>
+          <div class="p-info-item">
+            <div class="p-info-label">配色</div>
+            <div class="p-palette">
+              <div class="p-pal-dot" style="background:#f8f4f0"></div>
+              <div class="p-pal-dot" style="background:#fc7913"></div>
+              <div class="p-pal-dot" style="background:#7f6dbd"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- P9: ARROW PUZZLE MASTER -->
+<section id="p-apm">
+  <div class="apm-inner">
+    <div class="apm-header">
+      <div class="apm-proj-num">09 / 10 · ARROW PUZZLE · CASHOUT</div>
+      <h2 class="apm-title">Arrow Puzzle<br><span>Master</span></h2>
+      <p class="apm-subtitle">Candy · 3D Gloss · Toy World</p>
+      <p class="apm-desc">卡通 3D 糖果风。金黄底配钢蓝模态与黄绿 CTA，光泽材质与童趣造型增强游戏趣味性。</p>
+    </div>
+    <div class="p-info-bar">
+      <div class="p-info-item">
+        <div class="p-info-label">总页面</div>
+        <div class="p-info-value">20+ 屏幕</div>
+      </div>
+      <div class="p-info-item">
+        <div class="p-info-label">市场</div>
+        <div class="p-info-value">全球</div>
+      </div>
+      <div class="p-info-item">
+        <div class="p-info-label">类型</div>
+        <div class="p-info-value">游戏 + 网赚</div>
+      </div>
+      <div class="p-info-item">
+        <div class="p-info-label">配色</div>
+        <div class="p-palette">
+          <div class="p-pal-dot" style="background:#F2C94C"></div>
+          <div class="p-pal-dot" style="background:#6B8CAE"></div>
+          <div class="p-pal-dot" style="background:#8EC73F"></div>
+        </div>
+      </div>
+    </div>
+    <div class="apm-screens">
+      <div class="apm-screen" onclick="lb(this)">
+        <div class="screen-img"><img src="assets/arrow-puzzle-master/page_mainscreen.webp" alt=""></div>
+      </div>
+      <div class="apm-screen" onclick="lb(this)">
+        <div class="screen-img"><img src="assets/arrow-puzzle-master/page_loading.webp" alt=""></div>
+      </div>
+      <div class="apm-screen" onclick="lb(this)">
+        <div class="screen-img"><img src="assets/arrow-puzzle-master/page_luckyprize.webp" alt=""></div>
+      </div>
+      <div class="apm-screen" onclick="lb(this)">
+        <div class="screen-img"><img src="assets/arrow-puzzle-master/page_withdraw1.webp" alt=""></div>
+      </div>
+      <div class="apm-screen" onclick="lb(this)">
+        <div class="screen-img"><img src="assets/arrow-puzzle-master/page_settings.webp" alt=""></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- P10: ARROW CASH RUSH -->
+<section id="p-acr">
+  <div class="acr-inner">
+    <div class="acr-layout">
+      <div class="acr-screens-col">
+        <div class="acr-screen-row">
+          <div class="acr-screen" onclick="lb(this)">
+            <div class="screen-img"><img src="assets/arrow-cash-rush/page_mainscreen.webp" alt=""></div>
+          </div>
+          <div class="acr-screen" onclick="lb(this)">
+            <div class="screen-img"><img src="assets/arrow-cash-rush/page_victoryreward.webp" alt=""></div>
+          </div>
+          <div class="acr-screen" onclick="lb(this)">
+            <div class="screen-img"><img src="assets/arrow-cash-rush/page_levelclreance.webp" alt=""></div>
+          </div>
+        </div>
+        <div class="acr-screen-row">
+          <div class="acr-screen" onclick="lb(this)">
+            <div class="screen-img"><img src="assets/arrow-cash-rush/page_mydiamonds.webp" alt=""></div>
+          </div>
+          <div class="acr-screen" onclick="lb(this)">
+            <div class="screen-img"><img src="assets/arrow-cash-rush/page_withdrawtest.webp" alt=""></div>
+          </div>
+          <div class="acr-screen" onclick="lb(this)">
+            <div class="screen-img"><img src="assets/arrow-cash-rush/page_settings.webp" alt=""></div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="acr-proj-num">10 / 10 · ARROW PUZZLE · CASHOUT</div>
+        <h2 class="acr-title">Arrow Cash<br><em>Rush</em></h2>
+        <p class="acr-desc">日光明媚收官。全系色温最暖，奶油白底配天空蓝与暖黄，亲和力最强，休闲向受众适配度最高。</p>
+        <div class="p-info-bar">
+          <div class="p-info-item">
+            <div class="p-info-label">总页面</div>
+            <div class="p-info-value">20+ 屏幕</div>
+          </div>
+          <div class="p-info-item">
+            <div class="p-info-label">市场</div>
+            <div class="p-info-value">全球</div>
+          </div>
+          <div class="p-info-item">
+            <div class="p-info-label">类型</div>
+            <div class="p-info-value">游戏 + 网赚</div>
+          </div>
+          <div class="p-info-item">
+            <div class="p-info-label">配色</div>
+            <div class="p-palette">
+              <div class="p-pal-dot" style="background:#F5E6D3"></div>
+              <div class="p-pal-dot" style="background:#4A95D9"></div>
+              <div class="p-pal-dot" style="background:#FFD54F"></div>
+              <div class="p-pal-dot" style="background:#FF6B6B"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer id="footer">
+  <div class="footer-title">Design with Purpose</div>
+  <div class="footer-cta">Game UI Designer · 2026</div>
+</footer>
+
+<div id="lightbox"><img id="lb-img" src="" alt=""></div>
+
+<script>
+function lb(el) {
+  const img = el.querySelector('img');
+  if (!img) return;
+  document.getElementById('lb-img').src = img.src.replace('@thumb','');
+  document.getElementById('lightbox').classList.add('open');
+}
+document.getElementById('lightbox').addEventListener('click', () => {
+  document.getElementById('lightbox').classList.remove('open');
+});
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') document.getElementById('lightbox').classList.remove('open');
+});
+</script>
+</body>
+</html>

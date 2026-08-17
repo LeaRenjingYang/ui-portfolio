@@ -1,0 +1,20 @@
+{
+  "project": "Tricky Tales",
+  "slug": "tricky-tales",
+  "genre": "puzzle adventure",
+  "one_liner_zh": "温暖插画风解谜冒险，暖白底配橙色与紫色，童趣柔和",
+  "palette": {
+    "bg": "#f8f4f0",
+    "primary": "#fc7913",
+    "secondary": "#7f6dbd",
+    "accent": "#acc3fa",
+    "cta": "#fc7913"
+  },
+  "hero": "page_loading.webp",
+  "supporting": [
+    "page_main2.webp",
+    "page_levelclreance.webp",
+    "page_wd.webp",
+    "page_banner3.webp"
+  ]
+}

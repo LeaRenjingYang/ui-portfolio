@@ -1,0 +1,9 @@
+{
+  "project": "Rich Arrow",
+  "slug": "rich-arrow",
+  "genre": "arrow puzzle",
+  "one_liner_zh": "深海霓虹箭头谜题，深蓝底配电光蓝辉光和荧光绿钞票，数字赌场氛围",
+  "palette": {"bg": "#0D1B2E", "primary": "#1A2B47", "secondary": "#2B77E0", "accent": "#7DD653", "cta": "#B8E735"},
+  "hero": "page_loading.webp",
+  "supporting": ["page_mainscreen.webp", "page_cashout.webp", "page_cashrewards.webp", "page_settings.webp"]
+}

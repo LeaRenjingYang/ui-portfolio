@@ -1,0 +1,9 @@
+{
+  "project": "Arrow Puzzle Master",
+  "slug": "arrow-puzzle-master",
+  "genre": "arrow puzzle",
+  "one_liner_zh": "卡通糖果风箭头谜题，金黄底色配糖果色弹窗和3D光泽元素，玩具世界般欢快",
+  "palette": {"bg": "#F2C94C", "primary": "#6B8CAE", "secondary": "#C8D5E8", "accent": "#B8D964", "cta": "#8EC73F"},
+  "hero": "page_loading.webp",
+  "supporting": ["page_mainscreen.webp", "page_withdraw1.webp", "page_luckyprize.webp", "page_settings.webp"]
+}

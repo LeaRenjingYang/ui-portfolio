@@ -1,0 +1,21 @@
+{
+  "project": "Tile Match Fun",
+  "slug": "tile-match-fun",
+  "genre": "tile match / casual",
+  "one_liner_zh": "深色背景砖块消除游戏，黑底配暖黄粉渐变，沉浸感强",
+  "palette": {
+    "bg": "#1d1d1e",
+    "primary": "#f7cc4b",
+    "secondary": "#f17095",
+    "accent": "#f49474",
+    "cta": "#f7cc4b"
+  },
+  "hero": "Main Screen.webp",
+  "supporting": [
+    "Loading.webp",
+    "Congrats.webp",
+    "Withdraw.webp",
+    "Banners.webp",
+    "Fail.webp"
+  ]
+}

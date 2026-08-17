@@ -1,0 +1,22 @@
+{
+  "project": "Gold Merge Mania",
+  "slug": "gold-merge-mania",
+  "genre": "merge / casual",
+  "one_liner_zh": "合成黄金物品升级并提现真实现金或实物黄金奖励的休闲合成游戏",
+  "palette": {
+    "bg": "#6B3FA0",
+    "primary": "#FFD700",
+    "secondary": "#E85AA0",
+    "accent": "#00D4D4",
+    "cta": "#FFA726"
+  },
+  "hero": "page_mainscreen2.webp",
+  "supporting": [
+    "Game Play Screen.webp",
+    "Rare Collection 720x1560.webp",
+    "Lucky Gift 1.webp",
+    "Confirm Payout.webp",
+    "Withdraw History.webp",
+    "Daily Gift.webp"
+  ]
+}

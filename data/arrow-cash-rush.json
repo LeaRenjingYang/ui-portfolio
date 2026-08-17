@@ -1,0 +1,9 @@
+{
+  "project": "Arrow Cash Rush",
+  "slug": "arrow-cash-rush",
+  "genre": "arrow puzzle",
+  "one_liner_zh": "明亮日光系箭头谜题，奶油底色配天空蓝弹窗和暖黄奖励，轻松休闲氛围",
+  "palette": {"bg": "#F5E6D3", "primary": "#4A7BA7", "secondary": "#FFD54F", "accent": "#FF6B6B", "cta": "#4A95D9"},
+  "hero": "page_mainscreen.webp",
+  "supporting": ["page_victoryreward.webp", "page_mydiamonds.webp", "page_withdrawtest.webp", "page_levelclreance.webp"]
+}

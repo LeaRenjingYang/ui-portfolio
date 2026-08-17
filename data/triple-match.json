@@ -1,0 +1,21 @@
+{
+  "project": "Triple Match",
+  "slug": "triple-match",
+  "genre": "match-3 / casual",
+  "one_liner_zh": "三消休闲游戏，暖奶油色系配宝蓝高光，温馨轻松变现体验",
+  "palette": {
+    "bg": "#f9e6bf",
+    "primary": "#2969c0",
+    "secondary": "#913e4d",
+    "accent": "#f7cc4b",
+    "cta": "#2969c0"
+  },
+  "hero": "page_main.webp",
+  "supporting": [
+    "page_loading.webp",
+    "page_clear.webp",
+    "page_luckyreward1.webp",
+    "page_wd1.webp",
+    "page_settings2.webp"
+  ]
+}

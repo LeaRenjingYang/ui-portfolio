@@ -1,0 +1,9 @@
+{
+  "project": "Arrow Club",
+  "slug": "arrow-club",
+  "genre": "arrow puzzle",
+  "one_liner_zh": "深色赛博质感箭头谜题，霓虹青色点缀深海蓝背景，高端夜店氛围",
+  "palette": {"bg": "#2E3642", "primary": "#3C4A5C", "secondary": "#0EA5E9", "accent": "#7DD653", "cta": "#0EA5E9"},
+  "hero": "page_congrats1.webp",
+  "supporting": ["page_mainscreen2.webp", "page_cash.webp", "page_megareward.webp", "page_settings.webp"]
+}

@@ -1,0 +1,46 @@
+<!-- 修复市场信息 + 重新设计 4 个项目排版 -->
+
+<!-- P1: Gold Merge Mania - 市场改为"全球" -->
+<div class="p-info-item">
+  <div class="p-info-label">市场</div>
+  <div class="p-info-value">全球</div>
+</div>
+
+<!-- P4: ARROW CLUB - 改为 2x3 对称网格（之前是4列） -->
+<style>
+.club-screens-new {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 20px;
+  max-width: 900px; margin: 0 auto;
+}
+.club-screens-new .screen-img { height: 460px; }
+</style>
+
+<!-- P5: MAHJONG PARIS - 改为垂直堆叠单列（之前是3列画廊） -->
+<style>
+.mahjong-stack {
+  display: flex; flex-direction: column; gap: 24px;
+  max-width: 800px; margin: 0 auto;
+}
+.mahjong-stack .screen-img { height: 340px; border-radius: 20px; }
+</style>
+
+<!-- P6: RICH ARROW - 改为砖墙不规则（之前是分栏网格） -->
+<style>
+.rich-masonry {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: 180px; gap: 16px;
+}
+.rich-masonry .item-1 .screen-img { grid-row: span 3; height: 100%; }
+.rich-masonry .item-2 .screen-img { grid-row: span 2; height: 100%; }
+.rich-masonry .item-3 .screen-img { grid-row: span 2; height: 100%; }
+.rich-masonry .item-4 .screen-img { grid-row: span 2; height: 100%; }
+.rich-masonry .item-5 .screen-img { grid-row: span 3; height: 100%; }
+</style>
+
+<!-- P7: TRIPLE MATCH - 改为横向滚动（之前是4列卡片） -->
+<style>
+.triple-scroll {
+  display: flex; gap: 16px; overflow-x: auto; padding-bottom: 20px;
+}
+.triple-scroll .screen-img { flex: 0 0 280px; height: 560px; }
+</style>

@@ -1,0 +1,21 @@
+{
+  "project": "Mahjong Paris",
+  "slug": "mahjong-paris",
+  "genre": "mahjong solitaire",
+  "one_liner_zh": "巴黎风情麻将消除，炭灰底配香槟金与森林绿，古典优雅",
+  "palette": {
+    "bg": "#272726",
+    "primary": "#efd09a",
+    "secondary": "#18502a",
+    "accent": "#916251",
+    "cta": "#efd09a"
+  },
+  "hero": "page_main.webp",
+  "supporting": [
+    "page_loading.webp",
+    "page_levelclreance.webp",
+    "page_wd.webp",
+    "page_welcome.webp",
+    "page_settings.webp"
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "project": "离谱找茬王 部分图",
+  "slug": "lipuzhacha",
+  "display_name": "离谱找茬王",
+  "genre": "spot-the-difference / casual",
+  "one_liner_zh": "中式找茬休闲游戏，深橄榄底配红橙节庆色，国内变现场景完整",
+  "palette": {
+    "bg": "#29290d",
+    "primary": "#f4383c",
+    "secondary": "#f5a452",
+    "accent": "#4a32c6",
+    "cta": "#f4383c"
+  },
+  "hero": "main.webp",
+  "supporting": [
+    "page_chaojifuli.webp",
+    "page_hongbaosuixinti.webp",
+    "page_teshufuli.webp",
+    "page_tixian.webp"
+  ]
+}

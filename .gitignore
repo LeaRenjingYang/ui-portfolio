@@ -1,0 +1,19 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Backup files
+index-old.html
+index-backup-*.html
+*-old.*
+
+# Tools
+tools/
+
+# Logs
+*.log
+
+# Temporary files
+*.tmp
+*.temp
